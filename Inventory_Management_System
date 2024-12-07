@@ -1,0 +1,79 @@
+# Inventory Management System
+# Developed as part of the ITEC 1505: Programming Fundamentals with Python course project
+
+# Inventory stored as a dictionary: {item_id: {"name": name, "quantity": quantity, "price": price}}
+inventory = {}
+
+def add_item():
+    """Adds a new item to the inventory."""
+    item_id = input("Enter item ID: ")
+    if item_id in inventory:
+        print("Item ID already exists.")
+        return
+    name = input("Enter item name: ")
+    quantity = int(input("Enter item quantity: "))
+    price = float(input("Enter item price: "))
+    inventory[item_id] = {"name": name, "quantity": quantity, "price": price}
+    print("Item added successfully!")
+
+def update_item():
+    """Updates an existing item's details in the inventory."""
+    item_id = input("Enter item ID to update: ")
+    if item_id not in inventory:
+        print("Item ID not found.")
+        return
+    print("Current details:", inventory[item_id])
+    name = input("Enter new name (or press Enter to keep current): ") or inventory[item_id]["name"]
+    quantity = input("Enter new quantity (or press Enter to keep current): ")
+    quantity = int(quantity) if quantity else inventory[item_id]["quantity"]
+    price = input("Enter new price (or press Enter to keep current): ")
+    price = float(price) if price else inventory[item_id]["price"]
+    inventory[item_id] = {"name": name, "quantity": quantity, "price": price}
+    print("Item updated successfully!")
+
+def view_inventory():
+    """Displays all items in the inventory."""
+    if not inventory:
+        print("Inventory is empty.")
+        return
+    print("\nInventory:")
+    print(f"{'ID':<10} {'Name':<20} {'Quantity':<10} {'Price':<10}")
+    print("-" * 50)
+    for item_id, details in inventory.items():
+        print(f"{item_id:<10} {details['name']:<20} {details['quantity']:<10} ${details['price']:<10.2f}")
+
+def search_item():
+    """Searches for an item by ID."""
+    item_id = input("Enter item ID to search: ")
+    if item_id in inventory:
+        print("Item details:", inventory[item_id])
+    else:
+        print("Item ID not found.")
+
+def main():
+    """Main program loop."""
+    while True:
+        print("\nInventory Management System")
+        print("1. Add Item")
+        print("2. Update Item")
+        print("3. View Inventory")
+        print("4. Search Item")
+        print("5. Exit")
+        choice = input("Enter your choice: ")
+        
+        if choice == "1":
+            add_item()
+        elif choice == "2":
+            update_item()
+        elif choice == "3":
+            view_inventory()
+        elif choice == "4":
+            search_item()
+        elif choice == "5":
+            print("Exiting program. Goodbye!")
+            break
+        else:
+            print("Invalid choice. Please try again.")
+
+if __name__ == "__main__":
+    main()
