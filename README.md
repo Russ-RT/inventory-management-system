@@ -11,7 +11,7 @@ A basic inventory management system developed in Python as part of the ITEC 1505
 ## Usage
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/inventory-management-system.git
+   git clone https://github.com/Russ-RT/inventory-management-system.git
    ```
 2. Run the script:
    ```bash
